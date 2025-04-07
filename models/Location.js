@@ -4,12 +4,22 @@ const locationSchema = new mongoose.Schema({
   userId: {
     type: String,
     required: true,
-    unique: true, // Ensures one userId only
+    unique: true, // ensures only one location per user
+    trim: true,
   },
-  latitude: Number,
-  longitude: Number,
-  updatedAt: Date
+  latitude: {
+    type: Number,
+    required: true,
+  },
+  longitude: {
+    type: Number,
+    required: true,
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
-
-export default mongoose.model('Location', locationSchema);
+const Location = mongoose.model('Location', locationSchema);
+export default Location;
